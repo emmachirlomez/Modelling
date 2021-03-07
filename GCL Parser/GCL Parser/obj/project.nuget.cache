@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "63NptouLiFLPvj/xZUvCJuJrCgPF3U5oPGAXnaTHTjj+/5IiqK5uUjW79RCXA+nCvE1TQiWp1+EyBvwQky+N2w==",
+  "dgSpecHash": "NtLLcVY2Hlmdk2Dg04T/mfu3TNMeeDWb8HQHa6AHSEHLIWz3FNzRl3qKREaDOKDqbfJmpCsMPwYxC640DJVUzw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dusana\\source\\repos\\Modelling\\GCL Parser\\GCL Parser\\GCL Parser.fsproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Dusana\\.nuget\\packages\\fsharp.core\\4.7.2\\fsharp.core.4.7.2.nupkg.sha512"
+    "C:\\Users\\Dusana\\.nuget\\packages\\fsharp.core\\4.7.2\\fsharp.core.4.7.2.nupkg.sha512",
+    "C:\\Users\\Dusana\\.nuget\\packages\\fslexyacc\\10.0.0\\fslexyacc.10.0.0.nupkg.sha512",
+    "C:\\Users\\Dusana\\.nuget\\packages\\fslexyacc.runtime\\10.0.0\\fslexyacc.runtime.10.0.0.nupkg.sha512"
   ],
   "logs": []
 }
