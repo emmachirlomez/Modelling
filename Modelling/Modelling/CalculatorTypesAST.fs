@@ -2,6 +2,17 @@
 // to store represent arithmetic expressions
 module CalculatorTypesAST
 
+type expr =
+  | Num of float
+  | TimesExpr of (expr * expr)
+  | DivExpr of (expr * expr)
+  | PlusExpr of (expr * expr)
+  | MinusExpr of (expr * expr)
+  | PowExpr of (expr * expr)
+  | UPlusExpr of (expr)
+  | UMinusExpr of (expr)
+  | IntDiv of (expr * expr) 
+
 
 type statementA =
     | Number of int
@@ -13,7 +24,7 @@ type statementA =
     | Div of (statementA * statementA)
     | Neg of statementA
     | Pow of (statementA * statementA)
-    | Brack of statementA;;
+    | BrackA of statementA;;
 
 type statementB = 
     | True
@@ -29,7 +40,7 @@ type statementB =
     | GreaterOrEqual of (statementA * statementA)
     | Less of (statementA * statementA)
     | LessOrEqual of (statementA * statementA)
-    | Brack of statementB;;
+    | BrackB of statementB;;
 
 type statementC =
     | Assign of (string * statementA)
