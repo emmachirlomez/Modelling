@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <Compile Include="CalculatorTypesAST.fs" />
+	  <Compile Include="CalculatorParser.fs" />
+	  <Compile Include="CalculatorLexer.fs" />
+	  <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FsLexYacc" Version="10.0.0" />
+	<FsYacc Include="CalculatorParser.fsp">
+		<OtherFlags>--module CalculatorParser</OtherFlags>
+	</FsYacc>
+	<FsLex Include="CalculatorLexer.fsl">
+		<OtherFlags>--module CalculatorLexer --unicode</OtherFlags>
+	</FsLex>
+  </ItemGroup>
+
+</Project>
