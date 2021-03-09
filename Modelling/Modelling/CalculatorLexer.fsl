@@ -24,12 +24,39 @@ rule tokenize = parse
 | newline       { lexbuf.EndPos <- lexbuf.EndPos.NextLine; tokenize lexbuf; }
 // deal with tokens that need to be built
 | num           { NUM(Double.Parse(LexBuffer<_>.LexemeString lexbuf)) }
+//variable goes here?       <--
 | '*'           { TIMES }
-| "//"			{ INTDIV }
 | '/'           { DIV }
 | '+'           { PLUS }
 | '-'           { MINUS }
 | '^'           { POW }
+| '['			{ LSBRACK }
+| ']'			{ RSBRACK }
+//b operators
+| 'true'		{ TRUE }
+| 'false'       { FALSE }
+| '&'			{ EAGERAND }
+| '|'			{ EAGEROR }
+| '&&'			{ SHORTAND } //do we need this?
+| '||'			{ SHORTOR }
+| '!'			{ NEG }
+| '='			{ EQUAL }
+| '!='			{ INEQUAL }
+| '>'           { GREATER}
+| '>='          { GEQUAL }
+| '<'			{ LESSER }
+| '<='			{ LEQUAL }
 | '('           { LPAR }
 | ')'           { RPAR }
+//C operators
+| ':='			{ ASSIGN }
+| 'skip'        { SKIP }
+| ';'			{ CLINE }
+| 'if'          { IF }
+| 'fi'          { FI }
+| 'do'			{ DO }
+| 'od'			{ OD }
+//GC operators
+/ '->'			{ FUNC }
+/ '[]'			{ NSTAT }
 | eof           { EOF }
