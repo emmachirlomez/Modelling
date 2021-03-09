@@ -39,7 +39,9 @@ let rec compute n =
 // Start interacting with the user
 // compute 3
 
+let sample_program = "a := 23; if 3 < 2 -> a := 5 fi";;
+
 [<EntryPoint>]
 let main argv =
-    printf "%A" <| parseC stm (Map.empty)
+    printf "%A" <| parseC (parse sample_program) (Map.empty)
     0

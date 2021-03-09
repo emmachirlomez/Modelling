@@ -24,7 +24,7 @@ rule tokenize = parse
 | whitespace    { tokenize lexbuf }
 | newline       { lexbuf.EndPos <- lexbuf.EndPos.NextLine; tokenize lexbuf; }
 // deal with tokens that need to be built
-| num           { NUM(Double.Parse(LexBuffer<_>.LexemeString lexbuf)) }
+| num           { NUM(Int32.Parse(LexBuffer<_>.LexemeString lexbuf)) }
 | "->"			{ FUNC }
 | "[]"			{ NSTAT }
 | '*'           { TIMES }
@@ -58,5 +58,5 @@ rule tokenize = parse
 | "fi"          { FI }
 | "do"			{ DO }
 | "od"			{ OD }
-| variablename  { VARNAME(lexeme lexbuf) }
+| variablename  { let str = LexBuffer<_>.LexemeString lexbuf in VARNAME(str) }
 | eof           { EOF }
