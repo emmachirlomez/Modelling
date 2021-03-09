@@ -7,20 +7,11 @@ open System
 open CalculatorTypesAST
 open CalculatorParser
 open CalculatorLexer
+open Eval
+
 
 // We define the evaluation function recursively, by induction on the structure
 // of arithmetic expressions (AST of type expr)
-let rec eval e =
-  match e with
-    | Num(x) -> x
-    | TimesExpr(x,y) -> eval(x) * eval (y)
-    | DivExpr(x,y) -> eval(x) / eval (y)
-    | PlusExpr(x,y) -> eval(x) + eval (y)
-    | MinusExpr(x,y) -> eval(x) - eval (y)
-    | PowExpr(x,y) -> eval(x) ** eval (y)
-    | UPlusExpr(x) -> eval(x)
-    | UMinusExpr(x) -> - eval(x)
-    | IntDiv(x,y) -> Math.Floor (eval(x) / eval(y))
 
 // We
 let parse input =
@@ -41,7 +32,7 @@ let rec compute n =
         // We parse the input string
         let e = parse (Console.ReadLine())
         // and print the result of evaluating it
-        printfn "Result: %f" (eval(e))
+        printfn "Result: TBD"
         compute n
         with err -> compute (n-1)
 
@@ -50,5 +41,5 @@ let rec compute n =
 
 [<EntryPoint>]
 let main argv =
-    compute 3
+    printf "%A" <| parseC stm (Map.empty.Add("Buna", 3))
     0
