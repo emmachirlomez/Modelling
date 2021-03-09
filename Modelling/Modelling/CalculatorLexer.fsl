@@ -37,7 +37,7 @@ rule tokenize = parse
 //b operators
 | "true"		{ TRUE }
 | "false"       { FALSE }
-| "&&"			{ SHORTAND } //do we need this?
+| "&&"			{ SHORTAND } 
 | "||"			{ SHORTOR }
 | '&'			{ EAGERAND }
 | '|'			{ EAGEROR }
