@@ -33,30 +33,30 @@ rule tokenize = parse
 | '['			{ LSBRACK }
 | ']'			{ RSBRACK }
 //b operators
-| 'true'		{ TRUE }
-| 'false'       { FALSE }
+| "true"		{ TRUE }
+| "false"       { FALSE }
 | '&'			{ EAGERAND }
 | '|'			{ EAGEROR }
-| '&&'			{ SHORTAND } //do we need this?
-| '||'			{ SHORTOR }
+| "&&"			{ SHORTAND } //do we need this?
+| "||"			{ SHORTOR }
 | '!'			{ NEG }
 | '='			{ EQUAL }
-| '!='			{ INEQUAL }
+| "!="			{ INEQUAL }
 | '>'           { GREATER}
-| '>='          { GEQUAL }
+| ">="          { GEQUAL }
 | '<'			{ LESSER }
-| '<='			{ LEQUAL }
+| "<="			{ LEQUAL }
 | '('           { LPAR }
 | ')'           { RPAR }
 //C operators
-| ':='			{ ASSIGN }
-| 'skip'        { SKIP }
+| ":="			{ ASSIGN }
+| "skip"        { SKIP }
 | ';'			{ CLINE }
-| 'if'          { IF }
-| 'fi'          { FI }
-| 'do'			{ DO }
-| 'od'			{ OD }
+| "if"          { IF }
+| "fi"          { FI }
+| "do"			{ DO }
+| "od"			{ OD }
 //GC operators
-/ '->'			{ FUNC }
-/ '[]'			{ NSTAT }
+| "->"			{ FUNC }
+| "[]"			{ NSTAT }
 | eof           { EOF }
