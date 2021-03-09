@@ -54,3 +54,6 @@ C:\Users\Emma\Projects\Modelling\Modelling\Modelling\obj\Debug\netcoreapp3.1\Mod
 C:\Users\Emma\Projects\Modelling\Modelling\Modelling\obj\Debug\netcoreapp3.1\Modelling.dll
 C:\Users\Emma\Projects\Modelling\Modelling\Modelling\obj\Debug\netcoreapp3.1\Modelling.pdb
 C:\Users\Emma\Projects\Modelling\Modelling\Modelling\obj\Debug\netcoreapp3.1\Modelling.genruntimeconfig.cache
+C:\Users\bekky\source\repos\Modelling\Modelling\Modelling\obj\Debug\netcoreapp3.1\Modelling.fsprojAssemblyReference.cache
+C:\Users\bekky\source\repos\Modelling\Modelling\Modelling\obj\Debug\netcoreapp3.1\Modelling.dll
+C:\Users\bekky\source\repos\Modelling\Modelling\Modelling\obj\Debug\netcoreapp3.1\Modelling.pdb

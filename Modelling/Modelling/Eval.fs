@@ -151,14 +151,14 @@ and parseGC:(statementGC -> Map<string, int> -> Result<Map<string, int>, string>
 
 // Sample
 
-// a = 10
-// while (a < 20)
+// a = 1
+// while (a < 10)
 //    a = a + 1;
 
 let stm =
     Commandline (Assign ("a", Number 1),
                  DoStat (FunctionStat (Less (Variable "a", (Number 10)),
-                                    Assign ("a", Div (Variable "a", Number 0)))));;
+                                    Assign ("a", Sum (Variable "a", Number 1)))));;
 
 
 

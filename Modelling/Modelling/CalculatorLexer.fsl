@@ -30,6 +30,33 @@ rule tokenize = parse
 | '+'           { PLUS }
 | '-'           { MINUS }
 | '^'           { POW }
+| '['			{ LSBRACK }
+| ']'			{ RSBRACK }
+//b operators
+| "true"		{ TRUE }
+| "false"       { FALSE }
+| '&'			{ EAGERAND }
+| '|'			{ EAGEROR }
+| "&&"			{ SHORTAND } //do we need this?
+| "||"			{ SHORTOR }
+| '!'			{ NEG }
+| '='			{ EQUAL }
+| "!="			{ INEQUAL }
+| '>'           { GREATER}
+| ">="          { GEQUAL }
+| '<'			{ LESSER }
+| "<="			{ LEQUAL }
 | '('           { LPAR }
 | ')'           { RPAR }
+//C operators
+| ":="			{ ASSIGN }
+| "skip"        { SKIP }
+| ';'			{ CLINE }
+| "if"          { IF }
+| "fi"          { FI }
+| "do"			{ DO }
+| "od"			{ OD }
+//GC operators
+| "->"			{ FUNC }
+| "[]"			{ NSTAT }
 | eof           { EOF }

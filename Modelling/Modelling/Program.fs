@@ -41,5 +41,5 @@ let rec compute n =
 
 [<EntryPoint>]
 let main argv =
-    printf "%A" <| parseC stm (Map.empty.Add("Buna", 3))
+    printf "%A" <| parseC stm (Map.empty)
     0
