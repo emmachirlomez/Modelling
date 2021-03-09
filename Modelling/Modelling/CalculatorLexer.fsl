@@ -9,10 +9,11 @@ System.Globalization.CultureInfo.CurrentCulture <- new System.Globalization.Cult
 }
 
 // We define macros for some regular expressions we will use later
-let digit       = ['0'-'9']
-let num         = digit+ ( '.' digit+)?  ('E' ('+'|'-')? digit+ )?
-let whitespace  = [' ' '\t']
-let newline     = "\n\r" | '\n' | '\r'
+let digit        = ['0'-'9']
+let num          = digit+ ( '.' digit+)?  ('E' ('+'|'-')? digit+ )?
+let variablename = ['a'-'z''A'-'Z']['a'-'z''A'-'Z']*
+let whitespace   = [' ' '\t']
+let newline      = "\n\r" | '\n' | '\r'
 
 // We define now the rules for recognising and building tokens
 // for each of the tokens of our language we need a rule
@@ -24,8 +25,9 @@ rule tokenize = parse
 | newline       { lexbuf.EndPos <- lexbuf.EndPos.NextLine; tokenize lexbuf; }
 // deal with tokens that need to be built
 | num           { NUM(Double.Parse(LexBuffer<_>.LexemeString lexbuf)) }
+| "->"			{ FUNC }
+| "[]"			{ NSTAT }
 | '*'           { TIMES }
-| "//"			{ INTDIV }
 | '/'           { DIV }
 | '+'           { PLUS }
 | '-'           { MINUS }
@@ -35,17 +37,17 @@ rule tokenize = parse
 //b operators
 | "true"		{ TRUE }
 | "false"       { FALSE }
-| '&'			{ EAGERAND }
-| '|'			{ EAGEROR }
 | "&&"			{ SHORTAND } //do we need this?
 | "||"			{ SHORTOR }
+| '&'			{ EAGERAND }
+| '|'			{ EAGEROR }
+| "!="			{ INEQUAL }
 | '!'			{ NEG }
 | '='			{ EQUAL }
-| "!="			{ INEQUAL }
-| '>'           { GREATER}
 | ">="          { GEQUAL }
-| '<'			{ LESSER }
+| '>'           { GREATER }
 | "<="			{ LEQUAL }
+| '<'			{ LESSER }
 | '('           { LPAR }
 | ')'           { RPAR }
 //C operators
@@ -56,7 +58,5 @@ rule tokenize = parse
 | "fi"          { FI }
 | "do"			{ DO }
 | "od"			{ OD }
-//GC operators
-| "->"			{ FUNC }
-| "[]"			{ NSTAT }
+| variablename  { VARNAME(lexeme lexbuf) }
 | eof           { EOF }
