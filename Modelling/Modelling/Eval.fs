@@ -37,7 +37,6 @@ let rec parseA:(statementA -> Map<string, int> -> Result<int, string>) = fun stm
         match parseA a mp with
         | Ok s -> Ok (-s)
         | oth -> oth
-    | BrackA s -> parseA s mp
 
 
 and parseB:(statementB -> Map<string, int> -> Result<bool, string>) = fun stm mp ->
@@ -102,7 +101,6 @@ and parseB:(statementB -> Map<string, int> -> Result<bool, string>) = fun stm mp
         | (Ok a, Ok b) -> Ok (a <= b)
         | (Error s, _) -> Error s
         | (_, Error s) -> Error s
-    | BrackB s -> parseB s mp
 
 
 and parseC:(statementC -> Map<string, int> -> Result<Map<string, int>, string>) = fun stm mp ->

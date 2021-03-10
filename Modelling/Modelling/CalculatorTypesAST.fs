@@ -13,7 +13,6 @@ type statementA =
     | Div of (statementA * statementA)
     | Neg of statementA
     | Pow of (statementA * statementA)
-    | BrackA of statementA;;
 
 type statementB = 
     | True
@@ -29,7 +28,6 @@ type statementB =
     | GreaterOrEqual of (statementA * statementA)
     | Less of (statementA * statementA)
     | LessOrEqual of (statementA * statementA)
-    | BrackB of statementB;;
 
 type statementC =
     | Assign of (string * statementA)

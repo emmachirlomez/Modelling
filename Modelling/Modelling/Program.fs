@@ -7,6 +7,7 @@ open System
 open CalculatorTypesAST
 open CalculatorParser
 open CalculatorLexer
+open PrettyPrinter
 open Eval
 
 
@@ -39,9 +40,19 @@ let rec compute n =
 // Start interacting with the user
 // compute 3
 
-let sample_program = "a := 23; if 3 < 2 -> a := 5 fi";;
+let sample_program =
+"a := 23;
+ if 3 < 2 ->
+    a := 5 * a;
+    if 5 < 3 ->
+        a := 6;
+        b := 7
+    [] 6 > 7 ->
+        c := 3 - 4 + 5
+    fi
+fi";;
 
 [<EntryPoint>]
 let main argv =
-    printf "%A" <| parseC (parse sample_program) (Map.empty)
+    printf "%A" <| Print (parse sample_program)
     0

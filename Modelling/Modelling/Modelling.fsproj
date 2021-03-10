@@ -6,10 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+	  
 	  <Compile Include="CalculatorTypesAST.fs" />
 	  <Compile Include="CalculatorParser.fs" />
 	  <Compile Include="CalculatorLexer.fs" />
 	  <Compile Include="Eval.fs" />
+	  <Compile Include="PrettyPrinter.fs" />
 	  <Compile Include="Program.fs" />
   </ItemGroup>
 
