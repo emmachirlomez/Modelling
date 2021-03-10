@@ -11,10 +11,6 @@ open PrettyPrinter
 open Eval
 
 
-// We define the evaluation function recursively, by induction on the structure
-// of arithmetic expressions (AST of type expr)
-
-// We
 let parse input =
     // translate string into a buffer of characters
     let lexbuf = LexBuffer<char>.FromString input
@@ -24,35 +20,40 @@ let parse input =
     res
 
 // We implement here the function that interacts with the user
-let rec compute n =
-    if n = 0 then
-        printfn "Bye bye"
-    else
-        printf "Enter an arithmetic expression: "
-        try
+let test =
+    printf "Enter your GCL program:\n"
+    try
         // We parse the input string
         let e = parse (Console.ReadLine())
         // and print the result of evaluating it
-        printfn "Result: TBD"
-        compute n
-        with err -> compute (n-1)
+        printfn "\nParsed program:"
+        printfn "%s" <| Print e
+        try 
+            match Eval e with
+                | Ok ans -> printfn "After execution, memory is: %A" ans
+                | Error ans -> printfn "Failed to evaluate: %A" ans
+        with 
+            err -> printfn "Unable to evaluate code :("
+    with
+        err -> printfn "Unable to parse program, check your syntax!!!";;
 
 // Start interacting with the user
 // compute 3
 
 let sample_program =
-"a := 23;
- if 3 < 2 ->
-    a := 5 * a;
-    if 5 < 3 ->
-        a := 6;
-        b := 7
-    [] 6 > 7 ->
-        c := 3 - 4 + 5
-    fi
-fi";;
+        "a := 23;
+         if 3 < 2 ->
+            a := 5 * a;
+            if 5 < 3 ->
+                a := 6;
+                b := 7
+            [] 6 > 7 ->
+                c := 3 - 4 + 5
+            fi
+        fi";;
 
 [<EntryPoint>]
 let main argv =
-    printf "%A" <| Print (parse sample_program)
+    // printf "%A" <| Print (parse sample_program)
+    test 
     0

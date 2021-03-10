@@ -12,6 +12,20 @@ let rec parseA:(statementA -> Map<string, int> -> Result<int, string>) = fun stm
             Ok (mp.Item var)
         else
             Error ("Variable " + var + " does not exist!")
+    | Array (s, a) -> 
+        match parseA a mp with
+        | Ok index -> 
+            let new_name = s + "$" + index.ToString()
+            if mp.ContainsKey new_name then
+                Ok (mp.Item new_name)
+            else
+                Error ("Element " + s + "[" + index.ToString() + "] does not exist!")
+        | Error r -> Error r
+    | Pow (a, b) ->
+        match (parseA a mp, parseA b mp) with
+        | (Ok s1, Ok s2) -> Ok (pown s1 s2)
+        | (Error f1, _) -> Error f1
+        | (_, Error f2) -> Error f2 
     | Sum (a, b) ->
         match (parseA a mp, parseA b mp) with
         | (Ok s1, Ok s2) -> Ok (s1 + s2)
@@ -110,6 +124,13 @@ and parseC:(statementC -> Map<string, int> -> Result<Map<string, int>, string>) 
         match parseA v mp with
         | Error s -> Error s
         | Ok result -> Ok (mp.Add(var, result))
+    | AssignArray (s, a1, a2) ->
+        match (parseA a1 mp, parseA a2 mp) with
+        | (Error r, _) -> Error r
+        | (_, Error r) -> Error r
+        | (Ok index, Ok new_val) -> 
+            let new_var = s + "$" + index.ToString()
+            Ok (mp.Add(new_var, new_val))
     | Commandline (s1, s2) ->
         match parseC s1 mp with
         | Ok new_mp -> parseC s2 new_mp
@@ -146,17 +167,4 @@ and parseGC:(statementGC -> Map<string, int> -> Result<Map<string, int>, string>
         | Ok false -> parseGC s2 mp
         | Error err -> Error err;;
 
-
-// Sample
-
-// a = 1
-// while (a < 10)
-//    a = a + 1;
-
-let stm =
-    Commandline (Assign ("a", Number 1),
-                 DoStat (FunctionStat (Less (Variable "a", (Number 10)),
-                                    Assign ("a", Sum (Variable "a", Number 1)))));;
-
-
-
+let Eval (x:statementC) = parseC x Map.empty;;

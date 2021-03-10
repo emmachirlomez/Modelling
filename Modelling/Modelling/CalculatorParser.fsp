@@ -16,6 +16,11 @@ open CalculatorTypesAST
 %left TIMES DIV
 %right POW
 
+%left EAGEROR SHORTOR
+%left EAGEREND SHORTAND
+%left NEG
+
+%right CLINE NSTAT 
 
 // We declare the initial non-terminal symbol
 %start start
