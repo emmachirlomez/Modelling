@@ -6,7 +6,7 @@ Our CGL Paser is implemented using F# and the FsLexYacc library.
 
 To run simply you can simply run the project on Visual Studio.
 
-It's also possible to run in cmd:
+It's also possible to run in the cmd:
 
 ```bash
 msbuild Modelling.sln /p:Configuration=Release
