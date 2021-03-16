@@ -55,5 +55,5 @@ let sample_program =
 [<EntryPoint>]
 let main argv =
     // printf "%A" <| Print (parse sample_program)
-    test 
+    test
     0
