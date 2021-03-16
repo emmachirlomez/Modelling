@@ -13,7 +13,7 @@ let rec prettyPrinterA:(statementA -> string) = fun x ->
         | Diff(a1, a2) -> (prettyPrinterA a1) + " - " + (prettyPrinterA a2)
         | Div(a1, a2) -> (prettyPrinterA a1) + " / " + (prettyPrinterA a2)
         | Pow(a1, a2) -> (prettyPrinterA a1) + "^" + (prettyPrinterA a2)
-        | Neg(a) -> "!" + (prettyPrinterA a)
+        | Neg(a) -> "-" + (prettyPrinterA a)
         | Mul (a1, a2) -> (prettyPrinterA a1) + " * " + (prettyPrinterA a2);;
 
 let rec prettyPrinterB:(statementB -> string) = fun x ->

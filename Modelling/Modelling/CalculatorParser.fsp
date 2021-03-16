@@ -12,9 +12,10 @@ open CalculatorTypesAST
 
 // Specify precedence and associativity of operators
 // Precedence is given by the order (from low to high)
+%right POW
 %left PLUS MINUS 
 %left TIMES DIV
-%right POW
+
 
 %left EAGEROR SHORTOR
 %left EAGEREND SHORTAND
@@ -27,7 +28,7 @@ open CalculatorTypesAST
 
 // We specify the return type of each of then non-terminal symbols
 %type <statementC> start
-%type <statementA> expressionA
+%type <statementA> expressionA2 expressionA 
 %type <statementB> expressionB
 %type <statementC> expressionC
 %type <statementGC> expressionGC
@@ -47,6 +48,12 @@ start: expressionC EOF             { $1 }
 
 // The productions for expressions are like in the grammar we saw in class
 // written in the yacc format:
+
+
+expressionA2:
+  | MINUS expressionA		                { Neg($2) }
+  | expressionA							    { $1 }
+
 expressionA:
   | NUM										{ Number($1) }
   | VARNAME  								{ Variable($1) }

@@ -77,6 +77,7 @@ type tokenId =
 type nonTerminalId = 
     | NONTERM__startstart
     | NONTERM_start
+    | NONTERM_expressionA2
     | NONTERM_expressionA
     | NONTERM_expressionB
     | NONTERM_expressionC

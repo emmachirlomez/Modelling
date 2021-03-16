@@ -12,6 +12,7 @@
 	  <Compile Include="CalculatorLexer.fs" />
 	  <Compile Include="Eval.fs" />
 	  <Compile Include="PrettyPrinter.fs" />
+	  <None Include="Script1.fsx" />
 	  <Compile Include="Program.fs" />
   </ItemGroup>
 
@@ -24,5 +25,7 @@
 		<OtherFlags>--module CalculatorLexer --unicode</OtherFlags>
 	</FsLex>
   </ItemGroup>
+
+  <ItemGroup />
 
 </Project>
