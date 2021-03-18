@@ -4,11 +4,13 @@ module mainstuff
 // We need to import a couple of modules, including the generated lexer and parser
 open FSharp.Text.Lexing
 open System
+
 open CalculatorTypesAST
 open CalculatorParser
 open CalculatorLexer
 open PrettyPrinter
 open Eval
+open File1
 
 
 let parse input =
@@ -54,6 +56,15 @@ let sample_program =
 
 [<EntryPoint>]
 let main argv =
-    // printf "%A" <| Print (parse sample_program)
-    test
-    0
+    //printf "%A" <| Print (parse sample_program)
+
+    let str = "digraph program_graph {rankdir=LR;
+node [shape = circle]; q▷;
+node [shape = doublecircle]; q◀;
+node [shape = circle]"
+
+    let pg = new System.IO.StreamWriter("../../../Test.gv")
+    
+    pg.Write(edges (Assign("a",Number (2))) 0 1 0)
+    pg.Close()
+    0;;

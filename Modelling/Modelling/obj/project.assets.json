@@ -82,6 +82,15 @@
         "runtime": {
           "lib/Graphviz.dll": {}
         }
+      },
+      "GraphViz.NET/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/GraphVizWrapper.dll": {}
+        },
+        "runtime": {
+          "lib/net40/GraphVizWrapper.dll": {}
+        }
       }
     }
   },
@@ -367,12 +376,28 @@
         "vmalloc.dll",
         "zlib1.dll"
       ]
+    },
+    "GraphViz.NET/1.0.0": {
+      "sha512": "NktgbJpuFezT2yDAOaPC4FlmUfHOcTQc7THJn7+e6yEJslrHTbVo3nz3mvlrUJwdbSF8lHRFUopSLA2Cuag2Zw==",
+      "type": "package",
+      "path": "graphviz.net/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/app.config.install.xdt",
+        "Content/web.config.install.xdt",
+        "graphviz.net.1.0.0.nupkg.sha512",
+        "graphviz.net.nuspec",
+        "lib/net40/GraphVizWrapper.dll",
+        "readme.txt"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "FSharp.Core >= 5.0.0",
       "FsLexYacc >= 10.0.0",
+      "GraphViz.NET >= 1.0.0",
       "Graphviz >= 2.38.0.2"
     ]
   },
@@ -420,6 +445,11 @@
             "version": "[10.0.0, )",
             "generatePathProperty": true
           },
+          "GraphViz.NET": {
+            "target": "Package",
+            "version": "[1.0.0, )",
+            "generatePathProperty": true
+          },
           "Graphviz": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
@@ -454,6 +484,16 @@
       "warningLevel": 1,
       "message": "Package 'Graphviz 2.38.0.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
       "libraryId": "Graphviz",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'GraphViz.NET 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "GraphViz.NET",
       "targetGraphs": [
         ".NETCoreApp,Version=v3.1"
       ]

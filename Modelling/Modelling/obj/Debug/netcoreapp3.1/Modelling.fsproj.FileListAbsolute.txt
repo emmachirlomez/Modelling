@@ -144,3 +144,4 @@ C:\Users\bekky\source\repos\emmachirlomez\Modelling\Modelling\Modelling\Modellin
 C:\Users\bekky\source\repos\emmachirlomez\Modelling\Modelling\Modelling\Modelling\obj\Debug\netcoreapp3.1\Modelling.dll
 C:\Users\bekky\source\repos\emmachirlomez\Modelling\Modelling\Modelling\Modelling\obj\Debug\netcoreapp3.1\Modelling.pdb
 C:\Users\bekky\source\repos\emmachirlomez\Modelling\Modelling\Modelling\Modelling\obj\Debug\netcoreapp3.1\Modelling.genruntimeconfig.cache
+C:\Users\bekky\source\repos\emmachirlomez\Modelling\Modelling\Modelling\Modelling\bin\Debug\netcoreapp3.1\GraphVizWrapper.dll

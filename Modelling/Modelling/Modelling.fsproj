@@ -11,8 +11,8 @@
 	  <Compile Include="CalculatorParser.fs" />
 	  <Compile Include="CalculatorLexer.fs" />
 	  <Compile Include="Eval.fs" />
+	  <Compile Include="File1.fs" />
 	  <Compile Include="PrettyPrinter.fs" />
-	  <None Include="Script1.fsx" />
 	  <Compile Include="Program.fs" />
   </ItemGroup>
 
@@ -22,6 +22,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="GraphViz.NET" Version="1.0.0" />
 	<FsYacc Include="CalculatorParser.fsp">
 		<OtherFlags>--module CalculatorParser</OtherFlags>
 	</FsYacc>
