@@ -8,7 +8,7 @@ let rec prettyPrinterA:(statementA -> string) = fun x ->
     match x with 
         | Number(n) -> n.ToString()
         | Variable(v) -> v
-        | Array(s, a) -> s + " [" + (prettyPrinterA a) + "]"
+        | Array(s, a) -> s + "[" + (prettyPrinterA a) + "]"
         | Sum(a1, a2) -> (prettyPrinterA a1) + " + " + (prettyPrinterA a2)
         | Diff(a1, a2) -> (prettyPrinterA a1) + " - " + (prettyPrinterA a2)
         | Div(a1, a2) -> (prettyPrinterA a1) + " / " + (prettyPrinterA a2)

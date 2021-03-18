@@ -5,9 +5,9 @@
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
     <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
-    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\bekky\.nuget\packages\</NuGetPackageFolders>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\Emma\.nuget\packages\</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
-    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">5.8.1</NuGetToolVersion>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">5.8.0</NuGetToolVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <SourceRoot Include="$([MSBuild]::EnsureTrailingSlash($(NuGetPackageFolders)))" />
@@ -16,9 +16,9 @@
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgGraphViz_NET Condition=" '$(PkgGraphViz_NET)' == '' ">C:\Users\bekky\.nuget\packages\graphviz.net\1.0.0</PkgGraphViz_NET>
-    <PkgGraphviz Condition=" '$(PkgGraphviz)' == '' ">C:\Users\bekky\.nuget\packages\graphviz\2.38.0.2</PkgGraphviz>
-    <PkgFSharp_Core Condition=" '$(PkgFSharp_Core)' == '' ">C:\Users\bekky\.nuget\packages\fsharp.core\5.0.0</PkgFSharp_Core>
-    <PkgFsLexYacc Condition=" '$(PkgFsLexYacc)' == '' ">C:\Users\bekky\.nuget\packages\fslexyacc\10.0.0</PkgFsLexYacc>
+    <PkgGraphViz_NET Condition=" '$(PkgGraphViz_NET)' == '' ">C:\Users\Emma\.nuget\packages\graphviz.net\1.0.0</PkgGraphViz_NET>
+    <PkgGraphviz Condition=" '$(PkgGraphviz)' == '' ">C:\Users\Emma\.nuget\packages\graphviz\2.38.0.2</PkgGraphviz>
+    <PkgFSharp_Core Condition=" '$(PkgFSharp_Core)' == '' ">C:\Users\Emma\.nuget\packages\fsharp.core\5.0.0</PkgFSharp_Core>
+    <PkgFsLexYacc Condition=" '$(PkgFsLexYacc)' == '' ">C:\Users\Emma\.nuget\packages\fslexyacc\10.0.0</PkgFsLexYacc>
   </PropertyGroup>
 </Project>

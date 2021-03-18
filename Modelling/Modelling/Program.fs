@@ -10,7 +10,7 @@ open CalculatorParser
 open CalculatorLexer
 open PrettyPrinter
 open Eval
-open File1
+open ProgramGraph
 
 
 let parse input =
@@ -22,22 +22,29 @@ let parse input =
     res
 
 // We implement here the function that interacts with the user
-let test =
+let readGCLProgram =
     printf "Enter your GCL program:\n"
     try
         // We parse the input string
         let e = parse (Console.ReadLine())
         // and print the result of evaluating it
-        printfn "\nParsed program:"
-        printfn "%s" <| Print e
-        try 
-            match Eval e with
-                | Ok ans -> printfn "After execution, memory is: %A" ans
-                | Error ans -> printfn "Failed to evaluate: %A" ans
-        with 
-            err -> printfn "Unable to evaluate code :("
+        printfn "\nRaw parsed program:"
+        printfn "%A" <| e
+        printfn "\nPrettyfied parsed program:"
+        printfn "%A" <| Print e
+        e
     with
-        err -> printfn "Unable to parse program, check your syntax!!!";;
+        err -> printfn "Unable to parse program, check your syntax!!!"
+               Skip;;
+
+let evaluateProgram e =    
+    try 
+        match Eval e with
+            | Ok ans -> printfn "After execution, memory is: %A" ans
+            | Error ans -> printfn "Failed to evaluate: %A" ans
+    with 
+        err -> printfn "Unable to evaluate code :("
+
 
 // Start interacting with the user
 // compute 3
@@ -56,15 +63,9 @@ let sample_program =
 
 [<EntryPoint>]
 let main argv =
-    //printf "%A" <| Print (parse sample_program)
-
-    let str = "digraph program_graph {rankdir=LR;
-node [shape = circle]; q▷;
-node [shape = doublecircle]; q◀;
-node [shape = circle]"
-
-    let pg = new System.IO.StreamWriter("../../../Test.gv")
-    
-    pg.Write(edges (Assign("a",Number (2))) 0 1 0)
-    pg.Close()
+    let program = readGCLProgram
+    printf "Please enter the filename you want to save the .gv file into: "
+    let filename = Console.ReadLine()
+    printf "%s" <| "Done!\nGenerated:\n" + (GVGenerator program filename)
+    evaluateProgram program
     0;;

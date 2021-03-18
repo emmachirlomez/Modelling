@@ -11,8 +11,8 @@
 	  <Compile Include="CalculatorParser.fs" />
 	  <Compile Include="CalculatorLexer.fs" />
 	  <Compile Include="Eval.fs" />
-	  <Compile Include="File1.fs" />
 	  <Compile Include="PrettyPrinter.fs" />
+	  <Compile Include="ProgramGraph.fs" />
 	  <Compile Include="Program.fs" />
   </ItemGroup>
 

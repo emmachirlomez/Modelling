@@ -402,19 +402,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\bekky\\.nuget\\packages\\": {}
+    "C:\\Users\\Emma\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bekky\\source\\repos\\emmachirlomez\\Modelling\\Modelling\\Modelling\\Modelling\\Modelling.fsproj",
+      "projectUniqueName": "C:\\Users\\Emma\\Projects\\Modelling\\Modelling\\Modelling\\Modelling.fsproj",
       "projectName": "Modelling",
-      "projectPath": "C:\\Users\\bekky\\source\\repos\\emmachirlomez\\Modelling\\Modelling\\Modelling\\Modelling\\Modelling.fsproj",
-      "packagesPath": "C:\\Users\\bekky\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bekky\\source\\repos\\emmachirlomez\\Modelling\\Modelling\\Modelling\\Modelling\\obj\\",
+      "projectPath": "C:\\Users\\Emma\\Projects\\Modelling\\Modelling\\Modelling\\Modelling.fsproj",
+      "packagesPath": "C:\\Users\\Emma\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Emma\\Projects\\Modelling\\Modelling\\Modelling\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\bekky\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Emma\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -473,7 +473,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   },
