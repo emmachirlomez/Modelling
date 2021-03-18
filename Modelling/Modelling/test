@@ -1,0 +1,11 @@
+digraph program_graph {rankdir=LR;
+node [shape = circle]; q▷;
+node [shape = doublecircle]; q◀;
+node [shape = circle]
+q▷ -> q1[label = "a < 0"];
+q1 -> q◀[label = "a := 0"];
+q▷ -> q2[label = "b < 0 && !a < 0"];
+q2 -> q◀[label = "b := 0"];
+q▷ -> q3[label = "c < 0 && !a < 0 && !b < 0 && !a < 0"];
+q3 -> q◀[label = "c := 0"];
+}

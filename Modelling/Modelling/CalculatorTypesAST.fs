@@ -37,5 +37,4 @@ type statementC =
     | IfStat of statementGC
     | DoStat of statementGC
 and statementGC = 
-    | FunctionStat of (statementB * statementC)
-    | NextStat of (statementGC * statementGC);;
+    | GC of (statementB * statementC) list;;

@@ -21,6 +21,15 @@ let parse input =
     // return the result of parsing (i.e. value of type "expr")
     res
 
+let evaluateProgram e =    
+    try 
+        match Eval e with
+            | Ok ans -> printfn "After execution, memory is: %A" ans
+            | Error ans -> printfn "Failed to evaluate: %A" ans
+    with 
+        err -> printfn "Unable to evaluate code :("
+
+
 // We implement here the function that interacts with the user
 let readGCLProgram =
     printf "Enter your GCL program:\n"
@@ -32,19 +41,14 @@ let readGCLProgram =
         printfn "%A" <| e
         printfn "\nPrettyfied parsed program:"
         printfn "%A" <| Print e
-        e
+        printf "Please enter the filename you want to save the .gv file into: "
+        let filename = Console.ReadLine()
+        printf "Do you want a deterministic automaton (Y/N)? "
+        let response = Console.ReadLine()
+        printf "%s" <| "Done!\nGenerated:\n" + (GVGenerator (response.[0] = 'Y' || response.[0] = 'y') e filename)
+        evaluateProgram e
     with
-        err -> printfn "Unable to parse program, check your syntax!!!"
-               Skip;;
-
-let evaluateProgram e =    
-    try 
-        match Eval e with
-            | Ok ans -> printfn "After execution, memory is: %A" ans
-            | Error ans -> printfn "Failed to evaluate: %A" ans
-    with 
-        err -> printfn "Unable to evaluate code :("
-
+        err -> printfn "Unable to parse program, check your syntax!!!";;
 
 // Start interacting with the user
 // compute 3
@@ -64,8 +68,4 @@ let sample_program =
 [<EntryPoint>]
 let main argv =
     let program = readGCLProgram
-    printf "Please enter the filename you want to save the .gv file into: "
-    let filename = Console.ReadLine()
-    printf "%s" <| "Done!\nGenerated:\n" + (GVGenerator program filename)
-    evaluateProgram program
     0;;

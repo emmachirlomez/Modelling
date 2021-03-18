@@ -716,7 +716,7 @@ let _fsyacc_reductions ()  =    [|
                 (
                    (
 # 95 "CalculatorParser.fsp"
-                                                            FunctionStat(_1,_3) 
+                                                            GC([_1,_3]) 
                    )
 # 95 "CalculatorParser.fsp"
                  : statementGC));
@@ -728,7 +728,7 @@ let _fsyacc_reductions ()  =    [|
                 (
                    (
 # 96 "CalculatorParser.fsp"
-                                                               NextStat(_1,_3) 
+                                                               let GetV(GC a) = a in GC(GetV(_1) @ GetV(_3)) 
                    )
 # 96 "CalculatorParser.fsp"
                  : statementGC));

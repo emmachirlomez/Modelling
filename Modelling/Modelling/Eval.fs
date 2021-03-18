@@ -147,24 +147,21 @@ and parseC:(statementC -> Map<string, int> -> Result<Map<string, int>, string>) 
 
 and conditionTreeIsTrue:(statementGC -> Map<string, int> -> Result<bool, string>) = fun stm mp ->
     match stm with
-    | FunctionStat (sb, sc) -> parseB sb mp
-    | NextStat (s1, s2) ->
-        match conditionTreeIsTrue s1 mp with
+    | GC [] -> Ok false
+    | GC ((b, c):: t) ->
+        match parseB b mp with
         | Ok true -> Ok true
-        | Ok false -> conditionTreeIsTrue s2 mp
-        | Error err -> Error err
+        | Ok false -> conditionTreeIsTrue (GC t) mp
+        | Error s -> Error s
 
 and parseGC:(statementGC -> Map<string, int> -> Result<Map<string, int>, string>) = fun stm mp ->
     match stm with
-    | FunctionStat (sb, sc) ->
-        match parseB sb mp with
-        | Ok true -> parseC sc mp
-        | Ok false -> Ok mp
-        | Error err -> Error err
-    | NextStat (s1, s2) ->
-        match conditionTreeIsTrue s1 mp with
-        | Ok true -> parseGC s1 mp
-        | Ok false -> parseGC s2 mp
-        | Error err -> Error err;;
+    | GC [] -> Ok mp
+    | GC ((b, c)::t) ->
+        match parseB b mp with
+        | Ok true -> parseC c mp
+        | Ok false -> parseGC (GC t) mp
+        | Error s -> Error s;;
 
 let Eval (x:statementC) = parseC x Map.empty;;
+

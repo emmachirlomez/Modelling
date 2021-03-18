@@ -92,8 +92,8 @@ expressionC:
   | DO expressionGC OD										 { DoStat($2) }
 
 expressionGC:
-  | expressionB FUNC expressionC					{ FunctionStat($1,$3) }
-  | expressionGC NSTAT expressionGC					{ NextStat($1,$3) }
+  | expressionB FUNC expressionC					{ GC([$1,$3]) }
+  | expressionGC NSTAT expressionGC					{ let GetV(GC a) = a in GC(GetV($1) @ GetV($3)) }
  
 
 // Again, the code annotation specifies the result of parsing

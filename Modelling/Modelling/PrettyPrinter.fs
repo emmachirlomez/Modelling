@@ -4,6 +4,11 @@ open CalculatorTypesAST
 
 let spacing = "  ";
 
+let AddToFirstItem : (string -> string list -> string list) = fun s lst ->
+    s + (lst.Head) :: lst.Tail;;
+let AddToFirstItemAndRest : (string -> string -> string list -> string list) = fun sfirst srest lst ->
+    sfirst + (lst.Head) :: List.map (fun (s:string) -> if s.[0] = '\\' then s.Substring(1) else srest + s) lst.Tail;;
+    
 let rec prettyPrinterA:(statementA -> string) = fun x ->
     match x with 
         | Number(n) -> n.ToString()
@@ -44,15 +49,14 @@ let rec prettyPrinterC:(statementC -> string List) = fun x ->
             let real_c1_rev = (c1_reversed.Head + ";") :: c1_reversed.Tail
             let ans = List.rev real_c1_rev
             ans @ (prettyPrinterC c2)
-        | IfStat(gc) -> ["if"] @ List.map (fun s -> spacing + s) (prettyPrinterGC gc) @ ["fi"]
-        | DoStat(gc) -> ["do"] @ List.map (fun s -> spacing + s) (prettyPrinterGC gc) @ ["do"]
+        | IfStat(gc) -> AddToFirstItemAndRest "if " spacing (prettyPrinterGC gc) @ ["fi"]
+        | DoStat(gc) -> AddToFirstItemAndRest "do " spacing (prettyPrinterGC gc) @ ["od"]
 
 and prettyPrinterGC:(statementGC -> string List) = fun x ->
-    match x with 
-        | FunctionStat(b, c) -> [(prettyPrinterB b) + " -> "] @ (List.map (fun s -> spacing + s) (prettyPrinterC c))
-        | NextStat(gc1, gc2) ->
-            let ans = prettyPrinterGC gc2
-            (prettyPrinterGC gc1) @ (("[] " + ans.Head)::ans.Tail);;
+    match x with
+        | GC [] -> []
+        | GC [(b, c)] -> [(prettyPrinterB b) + " -> "] @ (List.map (fun s -> spacing + s) (prettyPrinterC c))
+        | GC ((b, c)::t) -> [(prettyPrinterB b) + " -> "] @ (List.map (fun s -> spacing + s) (prettyPrinterC c)) @ AddToFirstItem "\\[] " (prettyPrinterGC (GC t))
 
 let rec Print x = 
     let newLine = List.map (fun s -> s + "\n") (prettyPrinterC x) 
