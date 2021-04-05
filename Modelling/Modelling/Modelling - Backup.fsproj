@@ -8,10 +8,6 @@
   <ItemGroup>
 	  
 	  <Compile Include="CGLTypesAST.fs" />
-	  
-	  <Compile Include="VInitTypesAST.fs" />
-	  
-	  <Compile Include="VariableInit.fs" />
 	  <Compile Include="CGLParser.fs" />
 	  <Compile Include="CGLLexer.fs" />
 	  <Compile Include="Eval.fs" />
@@ -25,11 +21,11 @@
 	<FsYacc Include="CGLParser.fsp">
 		<OtherFlags>--module CGLParser</OtherFlags>
 	</FsYacc>
-	<None Include="VInitParser.fsp" />
 	<FsLex Include="CGLLexer.fsl">
 		<OtherFlags>--module CGLLexer --unicode</OtherFlags>
 	</FsLex>
-	<None Include="VInitLexer.fsp" />
   </ItemGroup>
+
+  <ItemGroup />
 
 </Project>

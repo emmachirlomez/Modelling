@@ -1,37 +1,27 @@
+﻿
 // Open the file that defines the type "expr" we shall use as AST
 %{
-open CalculatorTypesAST
+open CGLTypesAST
 %}
 
 // Declare the tokens (terminal symbols)
 %token <int> NUM
-%token <string> VARNAME
-%token TIMES DIV PLUS MINUS POW LSBRACK RSBRACK LPAR RPAR TRUE EOF INTDIV FALSE EAGERAND EAGEROR SHORTAND SHORTOR NEG EQUAL GEQUAL GREATER INEQUAL LEQUAL LESSER ASSIGN SKIP CLINE IF FI DO OD NSTAT FUNC
+%token <string> VARNAME ARRAY
+%token LSBRACK RSBRACK EOF EQUAL ASSIGN NSTAT
 // NOTE: the actual formats of these tokens are defined in the lexer file
 //       as regular expressions
 
 // Specify precedence and associativity of operators
 // Precedence is given by the order (from low to high)
-%left PLUS MINUS 
-%left TIMES DIV
-%right POW
-
-
-%left EAGEROR SHORTOR
-%left EAGEREND SHORTAND
-%left NEG
-
-%right CLINE NSTAT 
 
 // We declare the initial non-terminal symbol
 %start start
 
 // We specify the return type of each of then non-terminal symbols
-%type <statementC> start
-%type <statementA> expressionA2 expressionA 
-%type <statementB> expressionB
-%type <statementC> expressionC
-%type <statementGC> expressionGC
+%type <assign> start
+%type <assignments> assignments
+%type <assign> assign
+
 
 // Grammar productions
 %%
@@ -39,7 +29,7 @@ open CalculatorTypesAST
 // The first production in "formal" notation is
 // start -> expression
 // here written:
-start: expressionC EOF             { $1 }
+start: assignments EOF             { $1 }
 
 // Note that we need to insert an End-Of-File (EOF)
 // The code annotation { $1 } specifies that parsing with this production
@@ -48,6 +38,13 @@ start: expressionC EOF             { $1 }
 
 // The productions for expressions are like in the grammar we saw in class
 // written in the yacc format:
+
+a
+
+assign:
+  | VARNAME EQUAL NUM                       { Variable($1,$3)}
+  | VARNAME EQUAL LPAR values RPAR          { ArrayV()}
+
 
 
 expressionA2:

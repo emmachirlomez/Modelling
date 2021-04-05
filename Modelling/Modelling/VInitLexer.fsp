@@ -1,9 +1,9 @@
-// The generated lexer module will start with this code
+﻿// The generated lexer module will start with this code
 {
 open FSharp.Text.Lexing
 open System
 // open the module that defines the tokens
-open CalculatorParser
+open VIinitParser
 // Set the language to English such that 4.0 is parsed as 4 and not 40.
 System.Globalization.CultureInfo.CurrentCulture <- new System.Globalization.CultureInfo("en-US")
 }
@@ -14,49 +14,26 @@ let num          = digit+
 let variablename = ['a'-'z''A'-'Z']['a'-'z''A'-'Z''0'-'9''_']*
 let whitespace   = ['\u00A0' ' ' '\t']
 let newline      = "\n\r" | '\n' | '\r'
+let array        = \[num+[','num]*\]
+
 
 // We define now the rules for recognising and building tokens
 // for each of the tokens of our language we need a rule
 // NOTE: rules are applied in order top-down.
 //       This is important when tokens overlap (not in this example)
 rule tokenize = parse
+
 // deal with tokens that need to be ignored (skip them)
 | whitespace    { tokenize lexbuf }
 | newline       { lexbuf.EndPos <- lexbuf.EndPos.NextLine; tokenize lexbuf; }
+
 // deal with tokens that need to be built
 | num           { NUM(Int32.Parse(LexBuffer<_>.LexemeString lexbuf)) }
-| "->"			{ FUNC }
-| "[]"			{ NSTAT }
-| '*'           { TIMES }
-| '/'           { DIV }
-| '+'           { PLUS }
+| array         { ARRAY( }
 | '-'           { MINUS }
-| '^'           { POW }
-| '['			{ LSBRACK }
-| ']'			{ RSBRACK }
-//b operators
-| "true"		{ TRUE }
-| "false"       { FALSE }
-| "&&"			{ SHORTAND } 
-| "||"			{ SHORTOR }
-| '&'			{ EAGERAND }
-| '|'			{ EAGEROR }
-| "!="			{ INEQUAL }
-| '!'			{ NEG }
 | '='			{ EQUAL }
-| ">="          { GEQUAL }
-| '>'           { GREATER }
-| "<="			{ LEQUAL }
-| '<'			{ LESSER }
-| '('           { LPAR }
-| ')'           { RPAR }
-//C operators
-| ":="			{ ASSIGN }
-| "skip"        { SKIP }
-| ';'			{ CLINE }
-| "if"          { IF }
-| "fi"          { FI }
-| "do"			{ DO }
-| "od"			{ OD }
+| ","           { NSTAT }
 | variablename  { let str = LexBuffer<_>.LexemeString lexbuf in VARNAME(str) }
+| array         { let str = LexBuffer<_>.LexemeString lexbuf in ARRAY(str) }
 | eof           { EOF }
+

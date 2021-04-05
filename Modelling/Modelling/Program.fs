@@ -5,19 +5,17 @@ module mainstuff
 open FSharp.Text.Lexing
 open System
 
-open CalculatorTypesAST
-open CalculatorParser
-open CalculatorLexer
-open PrettyPrinter
+
+//open PrettyPrinter
 open Eval
-open ProgramGraph
+//open ProgramGraph
 
 
 let parse input =
     // translate string into a buffer of characters
     let lexbuf = LexBuffer<char>.FromString input
     // translate the buffer into a stream of tokens and parse them
-    let res = CalculatorParser.start CalculatorLexer.tokenize lexbuf
+    let res = CGLParser.start CGLLexer.tokenize lexbuf
     // return the result of parsing (i.e. value of type "expr")
     res
 
@@ -40,12 +38,13 @@ let readGCLProgram =
         printfn "\nRaw parsed program:"
         printfn "%A" <| e
         printfn "\nPrettyfied parsed program:"
-        printfn "%A" <| Print e
-        printf "Please enter the filename you want to save the .gv file into: "
-        let filename = Console.ReadLine()
-        printf "Do you want a deterministic automaton (Y/N)? "
-        let response = Console.ReadLine()
-        printf "%s" <| "Done!\nGenerated:\n" + (GVGenerator (response.[0] = 'Y' || response.[0] = 'y') e filename)
+ //       printfn "%A" <| Print e
+        // FIXME - just uncomment
+        //printf "Please enter the filename you want to save the .gv file into: "
+        //let filename = Console.ReadLine()
+        //printf "Do you want a deterministic automaton (Y/N)? "
+        //let response = Console.ReadLine()
+        //printf "%s" <| "Done!\nGenerated:\n" + (GVGenerator (response.[0] = 'Y' || response.[0] = 'y') e filename)
         evaluateProgram e
     with
         err -> printfn "Unable to parse program, check your syntax!!!";;
