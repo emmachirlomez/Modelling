@@ -123,14 +123,23 @@ and parseC:(statementC -> Map<string, int> -> Result<Map<string, int>, string>) 
     | Assign (var, v) -> // TODO: check if var exists
         match parseA v mp with
         | Error s -> Error s
-        | Ok result -> Ok (mp.Add(var, result))
+        | Ok result -> 
+            if mp.ContainsKey(var) then
+                Ok (mp.Add(var, result))
+            else
+                Error ("Variable " + var + " does not exist!")
+            
     | AssignArray (s, a1, a2) ->
         match (parseA a1 mp, parseA a2 mp) with
         | (Error r, _) -> Error r
         | (_, Error r) -> Error r
         | (Ok index, Ok new_val) -> 
             let new_var = s + "$" + index.ToString()
-            Ok (mp.Add(new_var, new_val))
+            if mp.ContainsKey(new_var) then
+                Ok (mp.Add(new_var, new_val))
+            else
+                Error ("Variable " + new_var + " does not exist!")
+            
     | Commandline (s1, s2) ->
         match parseC s1 mp with
         | Ok new_mp -> parseC s2 new_mp

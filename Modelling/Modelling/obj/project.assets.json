@@ -73,24 +73,6 @@
         "runtime": {
           "lib/netstandard2.0/FsLexYacc.Runtime.dll": {}
         }
-      },
-      "Graphviz/2.38.0.2": {
-        "type": "package",
-        "compile": {
-          "lib/_._": {}
-        },
-        "runtime": {
-          "lib/Graphviz.dll": {}
-        }
-      },
-      "GraphViz.NET/1.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net40/GraphVizWrapper.dll": {}
-        },
-        "runtime": {
-          "lib/net40/GraphVizWrapper.dll": {}
-        }
       }
     }
   },
@@ -261,160 +243,28 @@
         "lib/netstandard2.0/FsLexYacc.Runtime.dll",
         "lib/netstandard2.0/FsLexYacc.Runtime.xml"
       ]
-    },
-    "Graphviz/2.38.0.2": {
-      "sha512": "MPtG+Mf0fvuwuL1b0+9BghMeE4QHgaXLvRDSxrEHngU2/cNjE1N6pljiOrLptyOt/LfML8F/NGlT6i8VGS628w==",
-      "type": "package",
-      "path": "graphviz/2.38.0.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "GVedit.html",
-        "Graphviz.ini",
-        "New Text Document.txt",
-        "Pathplan.dll",
-        "QtCore4.dll",
-        "QtGui4.dll",
-        "Settings.ini",
-        "Temp.rar",
-        "acyclic.exe",
-        "ann.dll",
-        "bcomps.exe",
-        "ccomps.exe",
-        "cdt.dll",
-        "cgraph.dll",
-        "circo.exe",
-        "config.h",
-        "config6",
-        "diffimg.exe",
-        "dijkstra.exe",
-        "dot.exe",
-        "dotty.exe",
-        "edgepaint.exe",
-        "exparse.h",
-        "fc-cache.exe",
-        "fc-cat.exe",
-        "fc-list.exe",
-        "fc-match.exe",
-        "fdp.exe",
-        "fontconfig.dll",
-        "fontconfig_fix.dll",
-        "freetype6.dll",
-        "gc.exe",
-        "gd.tgz",
-        "gd.zip",
-        "getopt.h",
-        "glut32.dll",
-        "gml2gv.exe",
-        "graphml2gv.exe",
-        "graphviz.2.38.0.2.nupkg.sha512",
-        "graphviz.nuspec",
-        "gts.lib",
-        "gts.tgz",
-        "gv2gml.exe",
-        "gvc.dll",
-        "gvcolor.exe",
-        "gvedit.exe",
-        "gvgen.exe",
-        "gvmap.exe",
-        "gvpack.exe",
-        "gvplugin_core.dll",
-        "gvplugin_dot_layout.dll",
-        "gvplugin_gd.dll",
-        "gvplugin_gdiplus.dll",
-        "gvplugin_neato_layout.dll",
-        "gvplugin_pango.dll",
-        "gvpr.exe",
-        "gxl2gv.exe",
-        "iconv.dll",
-        "intl.dll",
-        "jpeg62.dll",
-        "lefty.exe",
-        "lib/Graphviz.dll",
-        "libatk-1.0-0.dll",
-        "libcairo-2.dll",
-        "libexpat-1.dll",
-        "libexpat.dll",
-        "libfontconfig-1.dll",
-        "libfreetype-6.dll",
-        "libgdk-win32-2.0-0.dll",
-        "libgdk_pixbuf-2.0-0.dll",
-        "libgdkglext-win32-1.0-0.dll",
-        "libgio-2.0-0.dll",
-        "libglade-2.0-0.dll",
-        "libglib-2.0-0.dll",
-        "libgmodule-2.0-0.dll",
-        "libgobject-2.0-0.dll",
-        "libgthread-2.0-0.dll",
-        "libgtk-win32-2.0-0.dll",
-        "libgtkglext-win32-1.0-0.dll",
-        "libltdl-3.dll",
-        "libpango-1.0-0.dll",
-        "libpangocairo-1.0-0.dll",
-        "libpangoft2-1.0-0.dll",
-        "libpangowin32-1.0-0.dll",
-        "libpng12.dll",
-        "libpng14-14.dll",
-        "librsvg-2-2.dll",
-        "libxml2.dll",
-        "lneato.exe",
-        "ltdl.dll",
-        "mingle.exe",
-        "mm2gv.exe",
-        "neato.exe",
-        "nop.exe",
-        "osage.exe",
-        "patchwork.exe",
-        "props.txt",
-        "prune.exe",
-        "sccmap.exe",
-        "sfdp.exe",
-        "smyrna.exe",
-        "tred.exe",
-        "twopi.exe",
-        "unflatten.exe",
-        "vmalloc.dll",
-        "zlib1.dll"
-      ]
-    },
-    "GraphViz.NET/1.0.0": {
-      "sha512": "NktgbJpuFezT2yDAOaPC4FlmUfHOcTQc7THJn7+e6yEJslrHTbVo3nz3mvlrUJwdbSF8lHRFUopSLA2Cuag2Zw==",
-      "type": "package",
-      "path": "graphviz.net/1.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Content/app.config.install.xdt",
-        "Content/web.config.install.xdt",
-        "graphviz.net.1.0.0.nupkg.sha512",
-        "graphviz.net.nuspec",
-        "lib/net40/GraphVizWrapper.dll",
-        "readme.txt"
-      ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "FSharp.Core >= 5.0.0",
-      "FsLexYacc >= 10.0.0",
-      "GraphViz.NET >= 1.0.0",
-      "Graphviz >= 2.38.0.2"
+      "FsLexYacc >= 10.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Emma\\.nuget\\packages\\": {}
+    "C:\\Users\\bekky\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Emma\\Projects\\Modelling\\Modelling\\Modelling\\Modelling.fsproj",
+      "projectUniqueName": "C:\\Users\\bekky\\source\\repos\\emmachirlomez\\Modelling\\Modelling\\Modelling\\Modelling\\Modelling.fsproj",
       "projectName": "Modelling",
-      "projectPath": "C:\\Users\\Emma\\Projects\\Modelling\\Modelling\\Modelling\\Modelling.fsproj",
-      "packagesPath": "C:\\Users\\Emma\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Emma\\Projects\\Modelling\\Modelling\\Modelling\\obj\\",
+      "projectPath": "C:\\Users\\bekky\\source\\repos\\emmachirlomez\\Modelling\\Modelling\\Modelling\\Modelling\\Modelling.fsproj",
+      "packagesPath": "C:\\Users\\bekky\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\bekky\\source\\repos\\emmachirlomez\\Modelling\\Modelling\\Modelling\\Modelling\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Emma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\bekky\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -444,18 +294,6 @@
             "target": "Package",
             "version": "[10.0.0, )",
             "generatePathProperty": true
-          },
-          "GraphViz.NET": {
-            "target": "Package",
-            "version": "[1.0.0, )",
-            "generatePathProperty": true
-          },
-          "Graphviz": {
-            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-            "suppressParent": "All",
-            "target": "Package",
-            "version": "[2.38.0.2, )",
-            "generatePathProperty": true
           }
         },
         "imports": [
@@ -473,30 +311,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Graphviz 2.38.0.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
-      "libraryId": "Graphviz",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'GraphViz.NET 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
-      "libraryId": "GraphViz.NET",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    }
-  ]
+  }
 }
