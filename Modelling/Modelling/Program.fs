@@ -63,7 +63,9 @@ let evalGCLProgram() =
         printfn "%A" <| e
         printfn "\nPrettyfied parsed program:"
         printfn "%A" <| Print e
-        let list_of_edges = GetProgramGraph e
+        printf "Do you want a deterministic automaton (Y/N)? "
+        let response = Console.ReadLine()
+        let list_of_edges = GetProgramGraph (response.[0] = 'Y') e
         InterpretPG list_of_edges
     with
         err -> printfn "Unable to parse program, check your syntax!!!";;
