@@ -7,6 +7,7 @@ open Eval
 
 type Memory = Map<string, int>
 
+
 let rec readInitialVariablesMemory : (int ->  Memory -> Memory) = fun count mp ->
     match count with
     | 0 -> mp
@@ -80,7 +81,7 @@ let rec InterpretPG : (Edge list -> unit) = fun edges ->
     let rec printMem :( List<(string * int)> -> string) = fun mem ->
         match (mem) with
         | [] -> ""
-        | (k, v)::t -> k + ": " + v.ToString() + "\n" +  printMem t
+        | (k, v)::t -> (variable_prettifier k) + ": " + v.ToString() + "\n" +  printMem t
 
     let qName : (int -> string) = fun n ->
            match n with 

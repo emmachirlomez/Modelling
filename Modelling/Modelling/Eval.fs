@@ -4,6 +4,11 @@ open CalculatorTypesAST
 
 // This module is able to evaluate a AST objects.
 
+let variable_prettifier : (string -> string) = fun var ->
+    match List.ofArray(var.Split('$')) with 
+    | [x] -> x
+    | [x; y] -> x + "[" + y + "]";;
+
 let rec parseA:(statementA -> Map<string, int> -> Result<int, string>) = fun stm mp ->
     match stm with
     | Number x -> Ok x
@@ -11,7 +16,7 @@ let rec parseA:(statementA -> Map<string, int> -> Result<int, string>) = fun stm
         if mp.ContainsKey var then
             Ok (mp.Item var)
         else
-            Error ("Variable " + var + " does not exist!")
+            Error ("Variable " + (variable_prettifier var) + " does not exist!")
     | Array (s, a) -> 
         match parseA a mp with
         | Ok index -> 
@@ -127,7 +132,7 @@ and parseC:(statementC -> Map<string, int> -> Result<Map<string, int>, string>) 
             if mp.ContainsKey(var) then
                 Ok (mp.Add(var, result))
             else
-                Error ("Variable " + var + " does not exist!")
+                Error ("Variable " + (variable_prettifier var) + " does not exist!")
             
     | AssignArray (s, a1, a2) ->
         match (parseA a1 mp, parseA a2 mp) with
@@ -138,7 +143,7 @@ and parseC:(statementC -> Map<string, int> -> Result<Map<string, int>, string>) 
             if mp.ContainsKey(new_var) then
                 Ok (mp.Add(new_var, new_val))
             else
-                Error ("Variable " + new_var + " does not exist!")
+                Error ("Variable " + (variable_prettifier new_var) + " does not exist!")
             
     | Commandline (s1, s2) ->
         match parseC s1 mp with
