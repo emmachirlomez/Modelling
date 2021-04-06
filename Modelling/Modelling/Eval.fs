@@ -120,7 +120,7 @@ and parseB:(statementB -> Map<string, int> -> Result<bool, string>) = fun stm mp
 and parseC:(statementC -> Map<string, int> -> Result<Map<string, int>, string>) = fun stm mp ->
     match stm with
     | Skip -> Ok mp
-    | Assign (var, v) ->
+    | Assign (var, v) -> // TODO: check if var exists
         match parseA v mp with
         | Error s -> Error s
         | Ok result -> Ok (mp.Add(var, result))

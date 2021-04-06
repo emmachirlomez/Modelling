@@ -11,6 +11,7 @@ open CalculatorLexer
 open PrettyPrinter
 open Eval
 open ProgramGraph
+open Task3
 
 
 let parse input =
@@ -31,7 +32,7 @@ let evaluateProgram e =
 
 
 // We implement here the function that interacts with the user
-let readGCLProgram =
+let readGCLProgram() =
     printf "Enter your GCL program:\n"
     try
         // We parse the input string
@@ -47,6 +48,23 @@ let readGCLProgram =
         let response = Console.ReadLine()
         printf "%s" <| "Done!\nGenerated:\n" + (GVGenerator (response.[0] = 'Y' || response.[0] = 'y') e filename)
         evaluateProgram e
+    with
+        err -> printfn "Unable to parse program, check your syntax!!!";;
+
+
+// We implement here the function that interacts with the user
+let evalGCLProgram() =
+    printf "Enter your GCL program:\n"
+    try
+        // We parse the input string
+        let e = parse (Console.ReadLine())
+        // and print the result of evaluating it
+        printfn "\nRaw parsed program:"
+        printfn "%A" <| e
+        printfn "\nPrettyfied parsed program:"
+        printfn "%A" <| Print e
+        let list_of_edges = GetProgramGraph e
+        InterpretPG list_of_edges
     with
         err -> printfn "Unable to parse program, check your syntax!!!";;
 
@@ -67,5 +85,5 @@ let sample_program =
 
 [<EntryPoint>]
 let main argv =
-    let program = readGCLProgram
+    evalGCLProgram()
     0;;

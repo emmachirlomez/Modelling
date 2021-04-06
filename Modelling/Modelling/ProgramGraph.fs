@@ -87,3 +87,8 @@ let GVGenerator : (bool -> statementC -> string -> string) = fun determ program 
     pg.Write(str + ans + "}\n")
     pg.Close()
     str + ans + "}\n";;
+
+
+let GetProgramGraph : (statementC -> Edge list) = fun program -> 
+    let (edges, _) = edgesC true program -1 -2 0
+    edges;;

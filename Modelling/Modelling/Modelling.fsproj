@@ -13,6 +13,7 @@
 	  <Compile Include="Eval.fs" />
 	  <Compile Include="PrettyPrinter.fs" />
 	  <Compile Include="ProgramGraph.fs" />
+	  <Compile Include="Task3.fs" />
 	  <Compile Include="Program.fs" />
   </ItemGroup>
 
