@@ -12,6 +12,8 @@ open PrettyPrinter
 open Eval
 open ProgramGraph
 open Task3
+open Task4
+open SignEval
 
 
 let parse input =
@@ -65,8 +67,10 @@ let evalGCLProgram() =
         printfn "%A" <| Print e
         printf "Do you want a deterministic automaton (Y/N)? "
         let response = Console.ReadLine()
-        let list_of_edges = GetProgramGraph (response.[0] = 'Y') e
+        let (list_of_edges, nr_nodes) = GetProgramGraph (response.[0] = 'Y') e
         InterpretPG list_of_edges
+        AnalyseSign list_of_edges nr_nodes
+
     with
         err -> printfn "Unable to parse program, check your syntax!!!";;
 
@@ -87,5 +91,6 @@ let sample_program =
 
 [<EntryPoint>]
 let main argv =
+    // printf "%A" <| EvaluateSignOfFunction (Set.empty.Add Plus) ((Set.empty.Add Minus).Add Zero) (/) 
     evalGCLProgram()
     0;;
