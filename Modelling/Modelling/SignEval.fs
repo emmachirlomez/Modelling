@@ -4,9 +4,9 @@ open CalculatorTypesAST
 // Module evaluating conditions or statments and giving back their signs.
 
 type Sign
-    = Plus
+    = Minus
     | Zero
-    | Minus
+    | Plus
     
 type MemSign = Set<Sign>
 
@@ -14,7 +14,7 @@ type MemBool = Set<bool>
 
 // Merges two sets of signs.
 let MergeMemSigns : (MemSign -> MemSign -> MemSign) = fun m1 m2 ->
-    Set.fold (fun s v -> s.Add v) m1 m2
+    Set.fold (fun s v -> s.Add v) m1 m2     
 
 // Gets two sets of signs and returns their combination using a function.
 // E.g. we have {+, -} * {-, 0}. We would like to know the answer will be {-, 0, +}.
@@ -85,18 +85,6 @@ type ArrMemory = Map<string, MemSign>
 type Memory = VarMemory * ArrMemory
 
 
-//type statementA =
-//    | Number of int
-//    | Variable of string
-//    | Array of (string * statementA) 
-//    | Sum of (statementA * statementA)
-//    | Diff of (statementA * statementA)
-//    | Mul of (statementA * statementA)
-//    | Div of (statementA * statementA)
-//    | Neg of statementA
-//    | Pow of (statementA * statementA)
-
-
 let rec EvaluateSignA : (statementA -> Memory -> MemSign) = fun stmA mem ->
     match stmA with 
     |Diff(a, b) ->
@@ -120,20 +108,6 @@ let rec EvaluateSignA : (statementA -> Memory -> MemSign) = fun stmA mem ->
         EvaluateSignOfFunction (EvaluateSignA a mem) (EvaluateSignA b mem) (+)
     |Neg(a) ->
         EvaluateSignOfFunction (Set.empty.Add(Zero)) (EvaluateSignA a mem) (-);;
-
-
-//    | False
-//    | EagerAnd of (statementB * statementB)
-//    | EagerOr of (statementB * statementB)
-//    | ShortAnd of (statementB * statementB)
-//    | ShortOr of (statementB * statementB)
-//    | Negation of statementB
-//    | Equality of (statementA * statementA)
-//    | Inequality of (statementA * statementA)
-//    | Greater of (statementA * statementA)
-//    | GreaterOrEqual of (statementA * statementA)
-//    | Less of (statementA * statementA)
-//    | LessOrEqual of (statementA * statementA)
 
 let rec EvaluateSignB : (statementB -> Memory -> MemBool) = fun stmB mem ->
     match stmB with

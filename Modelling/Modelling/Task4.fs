@@ -97,6 +97,38 @@ let ExpandEdgesSign : (Edge List -> GlobalSignState -> GlobalSignState) = fun ed
             mem.Add(dest, finalDestMem)
     List.fold updateMemory memory edges;;
 
+let DisplayMemorySigns : (Set<Memory> -> int -> unit) = fun mem node ->
+    let qName : (int -> string) = fun n ->
+        match n with 
+        | -1 -> "qStart"
+        | -2 -> "qFinal"
+        | x  -> "q" + x.ToString()
+    let SignToString : (Sign -> string) = fun sign -> 
+        match sign with
+        |Minus -> "-"
+        |Zero -> "0"
+        |Plus -> "+"
+    let SignsToStrings : (MemSign -> string) = fun signs ->
+        let SignsSet = Set.map SignToString signs
+        Set.fold (fun acc l -> acc + l + " ") "{ " SignsSet + "}"
+    printfn "%s" ("Memory of node " + (qName node) + ": ")  
+    if mem = Set.empty then
+        printfn "%s" ("    No memories found for this node!")
+    else    
+        let PrintMem : (Memory -> unit) = fun m ->
+            let (vars, arrs) = m
+            let PrintVarElement : ((string * Sign) -> unit) = fun (name, sign) ->
+                printf "%s" ("    "+ name + " = " + (SignToString sign))
+            let PrintArrElement : ((string * MemSign) -> unit) = fun (name, sign) ->
+                printf "%s" ("    "+ name + " = " + (SignsToStrings sign))
+            let _ = List.map PrintVarElement (Map.toList vars)
+            let _ = List.map PrintArrElement (Map.toList arrs)
+            printfn "%s" ""
+            ()
+        let _ = Set.map PrintMem mem
+        ();;
+
+
 // This function takes the program graph and nr nodes
 // and prints the sign for all varibales at any given node
 let rec AnalyseSign : (Edge List -> int -> unit) = fun edges nr_nodes ->
@@ -118,8 +150,11 @@ let rec AnalyseSign : (Edge List -> int -> unit) = fun edges nr_nodes ->
 
     // Getting final memory
     let finalMemory = FindFinalGlobalMemState globalMem
-    printf "%A" "The final memory is: "
-    printfn "%A" finalMemory;;
+    DisplayMemorySigns (finalMemory.Item(-1)) (-1)
+    let _ = List.map (fun node -> DisplayMemorySigns (finalMemory.Item(node)) node) [1..(nr_nodes - 2)]
+    DisplayMemorySigns (finalMemory.Item(-2)) (-2)
+    ();;
+
         
 
     

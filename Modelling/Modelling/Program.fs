@@ -69,6 +69,24 @@ let evalGCLProgram() =
         let response = Console.ReadLine()
         let (list_of_edges, nr_nodes) = GetProgramGraph (response.[0] = 'Y') e
         InterpretPG list_of_edges
+
+    with
+        err -> printfn "Unable to parse program, check your syntax!!!";;
+
+
+let PrintSignAnalysis() =
+    printf "Enter your GCL program:\n"
+    try
+        // We parse the input string
+        let e = parse (Console.ReadLine())
+        // and print the result of evaluating it
+        printfn "\nRaw parsed program:"
+        printfn "%A" <| e
+        printfn "\nPrettyfied parsed program:"
+        printfn "%A" <| Print e
+        printf "Do you want a deterministic automaton (Y/N)? "
+        let response = Console.ReadLine()
+        let (list_of_edges, nr_nodes) = GetProgramGraph (response.[0] = 'Y') e
         AnalyseSign list_of_edges nr_nodes
 
     with
@@ -92,5 +110,5 @@ let sample_program =
 [<EntryPoint>]
 let main argv =
     // printf "%A" <| EvaluateSignOfFunction (Set.empty.Add Plus) ((Set.empty.Add Minus).Add Zero) (/) 
-    evalGCLProgram()
+    PrintSignAnalysis()
     0;;
