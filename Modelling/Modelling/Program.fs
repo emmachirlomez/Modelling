@@ -99,7 +99,7 @@ let sample_program =
         "a := 23;
          if 3 < 2 ->
             a := 5 * a;
-            if 5 < 3 ->
+            if a < c ->
                 a := 6;
                 b := 7
             [] 6 > 7 ->
@@ -110,5 +110,5 @@ let sample_program =
 [<EntryPoint>]
 let main argv =
     // printf "%A" <| EvaluateSignOfFunction (Set.empty.Add Plus) ((Set.empty.Add Minus).Add Zero) (/) 
-    PrintSignAnalysis()
+    printf "%A" <|GetProgramGraph true  (parse sample_program) 
     0;;
