@@ -5,7 +5,7 @@ open ProgramGraph
 open Eval
 
 
-type Memory = Map<string, int>
+type Memory = Map<string, string>
 
 
 let rec readInitialVariablesMemory : (int ->  Memory -> Memory) = fun count mp ->
@@ -15,8 +15,8 @@ let rec readInitialVariablesMemory : (int ->  Memory -> Memory) = fun count mp -
         let rest_of_vars = readInitialVariablesMemory (count - 1) mp
         printf "%s" ("What is the name of the " + count.ToString() + "th variable?\n $ ")
         let varname = Console.ReadLine()
-        printf "%s" ("What is the value of '" + varname + "'?\n $ ")
-        let value = int(Console.ReadLine())
+        printf "%s" ("What is the security classification of '" + varname + "'?\n $ ")
+        let value = string(Console.ReadLine())
         rest_of_vars.Add(varname, value);;
 
 let rec readInitialArraysMemory : (int ->  Memory -> Memory) = fun count mp ->
@@ -26,15 +26,10 @@ let rec readInitialArraysMemory : (int ->  Memory -> Memory) = fun count mp ->
         let rest_of_vars = readInitialArraysMemory (count - 1) mp
         printf "%s" ("What is the name of the #" + count.ToString() + " array?\n $ ")
         let varname = Console.ReadLine()
-        printf "%s" ("What is the content of '" + varname + "' (please enter the values with spaces between them)\n $ ")
-        let values = List.map int (List.ofArray(Console.ReadLine().Split(' ')))
+        printf "%s" ("What is the security classification of '" + varname + "'?\n $ ")
+        let value = string(Console.ReadLine())
+        rest_of_vars.Add(varname, value);;
 
-        let addOneValue: ((Memory * int) -> int -> (Memory * int)) = fun (mp, id) value ->
-            (mp.Add(varname + "$" + id.ToString(), value), id + 1)
-
-        let (final_map, _) = List.fold addOneValue (rest_of_vars, 0) values
-
-        final_map;;
 
 let rec readInitialMemory : (unit -> Memory) = fun () ->
     printf "%s" ("How many variables do you want to initialise?\n $ ")

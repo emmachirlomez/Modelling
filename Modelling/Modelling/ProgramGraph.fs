@@ -89,6 +89,6 @@ let GVGenerator : (bool -> statementC -> string -> string) = fun determ program 
     str + ans + "}\n";;
 
 
-let GetProgramGraph : (bool -> statementC -> (Edge list * int)) = fun typ program -> 
-    let (edges, n) = edgesC typ program -1 -2 0
-    (edges, n + 2);;
+let GetProgramGraph : (bool -> statementC -> Edge list) = fun typ program -> 
+    let (edges,_n) = edgesC typ program -1 -2 0
+    edges;;

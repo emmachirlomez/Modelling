@@ -46,9 +46,12 @@ let readGCLProgram() =
         printfn "%A" <| Print e
         printf "Please enter the filename you want to save the .gv file into: "
         let filename = Console.ReadLine()
-        printf "Do you want a deterministic automaton (Y/N)? "
-        let response = Console.ReadLine()
-        printf "%s" <| "Done!\nGenerated:\n" + (GVGenerator (response.[0] = 'Y' || response.[0] = 'y') e filename)
+        printf "Specify Security Lattice, separated by a comma"
+        let securityLattice = Console.ReadLine().Split(",")
+        let list_of_edges = GetProgramGraph true e
+        InterpretPG list_of_edges 
+        printf ""
+        printf "%s" <| "Done!\nGenerated:\n" + (GVGenerator (true) e filename)
         evaluateProgram e
     with
         err -> printfn "Unable to parse program, check your syntax!!!";;
@@ -65,6 +68,7 @@ let evalGCLProgram() =
         printfn "%A" <| e
         printfn "\nPrettyfied parsed program:"
         printfn "%A" <| Print e
+        printfn "%A" <| InterpretPG
         printf "Do you want a deterministic automaton (Y/N)? "
         let response = Console.ReadLine()
         let (list_of_edges, nr_nodes) = GetProgramGraph (response.[0] = 'Y') e
@@ -73,6 +77,10 @@ let evalGCLProgram() =
     with
         err -> printfn "Unable to parse program, check your syntax!!!";;
 
+
+let InputVariables() =
+    printf "How many variab"
+    
 
 let PrintSignAnalysis() =
     printf "Enter your GCL program:\n"
@@ -86,11 +94,13 @@ let PrintSignAnalysis() =
         printfn "%A" <| Print e
         printf "Do you want a deterministic automaton (Y/N)? "
         let response = Console.ReadLine()
-        let (list_of_edges, nr_nodes) = GetProgramGraph (response.[0] = 'Y') e
+
+        let (list_of_edges, nr_nodes) = GetProgramGraph (true) e
         AnalyseSign list_of_edges nr_nodes
 
     with
         err -> printfn "Unable to parse program, check your syntax!!!";;
+
 
 // Start interacting with the user
 // compute 3

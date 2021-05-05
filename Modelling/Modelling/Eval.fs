@@ -4,6 +4,11 @@ open CalculatorTypesAST
 
 // This module is able to evaluate a AST objects.
 
+
+
+type Memory = Map<string, string>
+type Flows = Set<string * string>
+
 let variable_prettifier : (string -> string) = fun var ->
     match List.ofArray(var.Split('$')) with 
     | [x] -> x
@@ -122,42 +127,43 @@ and parseB:(statementB -> Map<string, int> -> Result<bool, string>) = fun stm mp
         | (_, Error s) -> Error s
 
 
-and parseC:(statementC -> Map<string, int> -> Result<Map<string, int>, string>) = fun stm mp ->
+and parseC:(statementC -> Map<string, int> -> Flows -> (Result<Map<string, int>, string> * Flows )) = fun stm mp flows ->
     match stm with
-    | Skip -> Ok mp
+    | Skip -> (Ok mp, flows) 
     | Assign (var, v) -> // TODO: check if var exists
         match parseA v mp with
-        | Error s -> Error s
+        | Error s -> (Error s, flows) 
         | Ok result -> 
             if mp.ContainsKey(var) then
-                Ok (mp.Add(var, result))
+                flows.Add(var, mp.)
+                (Ok (mp.Add(var, result)), flows) 
             else
-                Error ("Variable " + (variable_prettifier var) + " does not exist!")
+                (Error ("Variable " + (variable_prettifier var) + " does not exist!"), flows) 
             
     | AssignArray (s, a1, a2) ->
         match (parseA a1 mp, parseA a2 mp) with
-        | (Error r, _) -> Error r
-        | (_, Error r) -> Error r
+        | (Error r, _) -> (Error r, flows) 
+        | (_, Error r) -> (Error r, flows) 
         | (Ok index, Ok new_val) -> 
             let new_var = s + "$" + index.ToString()
             if mp.ContainsKey(new_var) then
-                Ok (mp.Add(new_var, new_val))
+                (Ok (mp.Add(new_var, new_val)), flows) 
             else
-                Error ("Variable " + (variable_prettifier new_var) + " does not exist!")
+                (Error ("Variable " + (variable_prettifier new_var) + " does not exist!"), flows) 
             
     | Commandline (s1, s2) ->
-        match parseC s1 mp with
-        | Ok new_mp -> parseC s2 new_mp
+        match parseC s1 mp flows with
+        | (Ok new_mp, flows)  -> parseC s2 new_mp flows
         | fail -> fail
-    | IfStat gc -> parseGC gc mp
+    | IfStat gc -> parseGC gc mp flows
     | DoStat gc ->
         match conditionTreeIsTrue gc mp with
         | Ok true ->
-            match parseGC gc mp with
-            | Ok new_mp -> parseC (DoStat gc) new_mp
-            | Error err -> Error err
-        | Ok false -> Ok mp
-        | Error err -> Error err
+            match parseGC gc mp flows with
+            | (Ok new_mp, flows)  -> parseC (DoStat gc) new_mp flows
+            | (Error err, flows)  -> (Error err, flows) 
+        | Ok false -> (Ok mp, flows) 
+        | Error err -> (Error err, flows) 
 
 and conditionTreeIsTrue:(statementGC -> Map<string, int> -> Result<bool, string>) = fun stm mp ->
     match stm with
@@ -168,14 +174,14 @@ and conditionTreeIsTrue:(statementGC -> Map<string, int> -> Result<bool, string>
         | Ok false -> conditionTreeIsTrue (GC t) mp
         | Error s -> Error s
 
-and parseGC:(statementGC -> Map<string, int> -> Result<Map<string, int>, string>) = fun stm mp ->
+and parseGC:(statementGC -> Map<string, int> -> Flows -> (Result<Map<string, int>, string>) * Flows) = fun stm mp flows ->
     match stm with
-    | GC [] -> Ok mp
+    | GC [] -> (Ok mp, flows) 
     | GC ((b, c)::t) ->
         match parseB b mp with
-        | Ok true -> parseC c mp
-        | Ok false -> parseGC (GC t) mp
-        | Error s -> Error s;;
+        | Ok true -> parseC c mp flows
+        | Ok false -> parseGC (GC t) mp flows
+        | Error s -> (Error s, flows) ;;
 
 let Eval (x:statementC) = parseC x Map.empty;;
 
