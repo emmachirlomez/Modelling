@@ -11,8 +11,8 @@ open CalculatorLexer
 open PrettyPrinter
 open Eval
 open ProgramGraph
-open Task3
 open Task4
+open Task5
 open SignEval
 
 
@@ -110,5 +110,6 @@ let sample_program =
 [<EntryPoint>]
 let main argv =
     // printf "%A" <| EvaluateSignOfFunction (Set.empty.Add Plus) ((Set.empty.Add Minus).Add Zero) (/) 
-    printf "%A" <|GetProgramGraph true  (parse sample_program) 
+    //printf "%A" <|GetProgramGraph true  (parse sample_program) 
+    printf "%A" <| getAllowed (readInitialMemory())
     0;;
