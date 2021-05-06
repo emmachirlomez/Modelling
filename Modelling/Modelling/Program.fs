@@ -13,6 +13,7 @@ open Eval
 open ProgramGraph
 open Task3
 open Task4
+open Task5
 open SignEval
 
 
@@ -54,7 +55,7 @@ let readGCLProgram() =
         err -> printfn "Unable to parse program, check your syntax!!!";;
 
 
-// We implement here the function that interacts with the user
+//  We implement here the function that interacts with the user
 let evalGCLProgram() =
     printf "Enter your GCL program:\n"
     try
@@ -92,6 +93,21 @@ let PrintSignAnalysis() =
     with
         err -> printfn "Unable to parse program, check your syntax!!!";;
 
+let PrintSecurityAnalysis() =
+    printf "Enter your GCL program:\n"
+    try
+        // We parse the input string
+        let e = parse (Console.ReadLine())
+        // and print the result of evaluating it
+        printfn "\nRaw parsed program:"
+        printfn "%A" <| e
+        printfn "\nPrettyfied parsed program:"
+        printfn "%A" <| Print e
+        printSecurity (get_flows_and_violations e)
+
+    with
+        err -> printfn "Unable to parse program, check your syntax!!!";;
+
 // Start interacting with the user
 // compute 3
 
@@ -110,5 +126,6 @@ let sample_program =
 [<EntryPoint>]
 let main argv =
     // printf "%A" <| EvaluateSignOfFunction (Set.empty.Add Plus) ((Set.empty.Add Minus).Add Zero) (/) 
-    printf "%A" <|GetProgramGraph true  (parse sample_program) 
+    //printf "%A" <|GetProgramGraph true  (parse sample_program) 
+    PrintSecurityAnalysis()
     0;;
