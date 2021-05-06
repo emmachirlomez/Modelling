@@ -12,6 +12,7 @@
 	  <Compile Include="CalculatorLexer.fs" />
 	  <Compile Include="Eval.fs" />
 	  <Compile Include="PrettyPrinter.fs" />
+	  <Compile Include="ProgramFlows.fs" />
 	  <Compile Include="ProgramGraph.fs" />
 	  <Compile Include="SignEval.fs" />
 	  <Compile Include="Task3.fs" />
