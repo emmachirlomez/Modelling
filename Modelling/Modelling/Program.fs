@@ -14,6 +14,7 @@ open ProgramGraph
 open Task3
 open Task4
 open Task5
+open Task6
 open SignEval
 
 
@@ -111,21 +112,29 @@ let PrintSecurityAnalysis() =
 // Start interacting with the user
 // compute 3
 
-let sample_program =
-        "a := 23;
-         if 3 < 2 ->
-            a := 5 * a;
-            if a < c ->
-                a := 6;
-                b := 7
-            [] 6 > 7 ->
-                c := 3 - 4 + 5
-            fi
-        fi";;
+let PrintStates() =
+    printf "Enter your GCL program:\n"
+    try
+        // We parse the input string
+        let e = parse (Console.ReadLine())
+        // and print the result of evaluating it
+        printfn "\nRaw parsed program:"
+        printfn "%A" <| e
+        printfn "\nPrettyfied parsed program:"
+        printfn "%A" <| Print e
+        let (list_of_edges, nr_nodes) = GetProgramGraph false e
+        GetStucksStates list_of_edges
+
+    with
+        err -> printfn "Unable to parse program, check your syntax!!!";;
+
 
 [<EntryPoint>]
 let main argv =
-    // printf "%A" <| EvaluateSignOfFunction (Set.empty.Add Plus) ((Set.empty.Add Minus).Add Zero) (/) 
-    //printf "%A" <|GetProgramGraph true  (parse sample_program) 
-    PrintSecurityAnalysis()
+    // For task 1 + 2: readGCLProgram()
+    // For task 3: evalGCLProgram()
+    // For task 4: PrintSignAnalysis()
+    // For task 5: PrintSecurityAnalysis()
+    // For task 6: 
+    PrintStates()
     0;;
