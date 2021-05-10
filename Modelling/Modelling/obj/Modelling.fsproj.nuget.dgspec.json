@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Emma\\Desktop\\Modelling\\Modelling\\Modelling\\Modelling.fsproj": {}
+    "C:\\Users\\Emma\\Projects\\Modelling\\Modelling\\Modelling\\Modelling.fsproj": {}
   },
   "projects": {
-    "C:\\Users\\Emma\\Desktop\\Modelling\\Modelling\\Modelling\\Modelling.fsproj": {
+    "C:\\Users\\Emma\\Projects\\Modelling\\Modelling\\Modelling\\Modelling.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Emma\\Desktop\\Modelling\\Modelling\\Modelling\\Modelling.fsproj",
+        "projectUniqueName": "C:\\Users\\Emma\\Projects\\Modelling\\Modelling\\Modelling\\Modelling.fsproj",
         "projectName": "Modelling",
-        "projectPath": "C:\\Users\\Emma\\Desktop\\Modelling\\Modelling\\Modelling\\Modelling.fsproj",
+        "projectPath": "C:\\Users\\Emma\\Projects\\Modelling\\Modelling\\Modelling\\Modelling.fsproj",
         "packagesPath": "C:\\Users\\Emma\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Emma\\Desktop\\Modelling\\Modelling\\Modelling\\obj\\",
+        "outputPath": "C:\\Users\\Emma\\Projects\\Modelling\\Modelling\\Modelling\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Emma\\AppData\\Roaming\\NuGet\\NuGet.Config",
