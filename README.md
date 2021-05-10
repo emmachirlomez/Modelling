@@ -18,6 +18,13 @@ start Modelling.exe
 ```
 
 ## Usage
+To test the several tasks, in main, run the indicated function in the list bellow
+
+* Task 1 and 2 -> readGCLProgram()
+* Task 3       -> evalGCLProgram()
+* Task 4       -> PrintSignAnalysis()
+* Task 5       -> PrintSecurityAnalysis()
+* Task6        -> PrintStates()
 
 After executing, you can enter your CGL program in the prompt. 
 
